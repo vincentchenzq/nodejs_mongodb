@@ -11,7 +11,7 @@ exports.mongoObj = function(){
 /// create a connection to the DB
 exports.CreateConnection=function(callback,returnFunc){
     var connection = mongoose.createConnection(dburl);
-    connection.on('open', function() {
-    callback(connection,Admin,returnFunc);
-});
+        connection.on('open', function() {
+        callback(connection,Admin,returnFunc);
+    });
 }

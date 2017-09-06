@@ -6,11 +6,12 @@
     "start": "node app"
   },
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "3.0.0beta7",
     "jade": "*",
+    "log4js": "^2.3.3",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.9",
-    "util": "^0.10.3",
-    "ejs":"^2.5.7"
+    "util": "^0.10.3"
   }
 }

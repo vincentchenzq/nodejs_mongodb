@@ -4,6 +4,7 @@ var express = require('express')
   , http = require('http')
   , config = require("./config");  
 
+const loger = require("./models/loger");
 
 var app = express();
 
