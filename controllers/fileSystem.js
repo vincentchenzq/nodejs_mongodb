@@ -14,8 +14,10 @@ var url=require("url"),
     util=require('util'),
     fs=require("fs");
 
+const loger = require("../models/loger");
+
 exports.initFileInfo=function (req,res,next){
-    console.log(url.parse(req.url).pathname);
+    loger.info("路由"+url.parse(req.url).pathname);
 
     var filePath= fileUtils.urlParse(req);
     if(filePath=='/'){
@@ -23,6 +25,7 @@ exports.initFileInfo=function (req,res,next){
 
     }else{
       var  filename=path.join(root,filePath);
+        loger.info("文件名"+filename);
         path.exists(filename,function(exists){
             if(!exists){
                 util.error('找不到文件'+filename);

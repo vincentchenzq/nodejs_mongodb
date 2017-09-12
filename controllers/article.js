@@ -6,10 +6,13 @@ var util = require('util');
 var articleDBModel = require('../models/article.js');
 var log = require('../utils/logger.js');
 var logger =new log.init("filelog.txt");
+const loger = require("../models/loger");
 exports.setup = function(callback) { callback(null); }
 var article =new articleDBModel.Schema("articleType").model;
 var articleDetail =articleDBModel.Schema("articleDetail").model;
 exports.saveArticleType = function (req, res, next) {
+    loger.info("开始");
+    console.log("开始");
     exports.findUpload(req,res);
     var articleEntity = new article();
     articleEntity.articleType = req.body.txtArticleType;
@@ -27,10 +30,10 @@ exports.saveArticleType = function (req, res, next) {
 };
 exports.findUpload=function(req,res){
     var tmp_path = req.files.articleLogo.path;
-    console.log("temp_path->"+tmp_path);
+    loger.info("temp_path->"+tmp_path);
     // 指定文件上传后的目录 - 示例为"images"目录。
     var target_path = './public/upload/imgages/' + req.files.articleLogo.name;
-    console.log(target_path);
+    loger.info(target_path);
     var readStream = fs.createReadStream(tmp_path)
     var writeStream = fs.createWriteStream(target_path);
     readStream.pipe(writeStream);
@@ -95,6 +98,8 @@ exports.search = function(req,res,next){
 
 exports.initManager=function (req,res,next){
    var articleDetailEntity =  new articleDetail();
+    loger.info("article/articleManager/"+'   '+'初始化');
+    loger.info("articleId"+req.params.articleId);
     if(req.params.articleId){
         articleDetail.find({_id:req.params.articleId}, function (err, row) {
             if (err) {

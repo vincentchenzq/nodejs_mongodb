@@ -20,15 +20,16 @@ var config = require("../config");
 var MongoClient = require('mongodb').MongoClient;
 var DB_CONN_STR = config.db; //# 数据库为
 var COLLECTION_NAME =config.collection_name;
+const loger = require("../models/loger");
 
 
 exports.MongoClient = function(callback,returnFunc){
     MongoClient.connect(DB_CONN_STR, function(err, db) {
         if(err){
-            console.log("连接数据库异常");
+            loger.error("连接数据库异常");
             return;
         }
-        console.log("连接成功！");
+        loger.info("连接成功！"+DB_CONN_STR+'数据库名'+COLLECTION_NAME);
         callback(db,db.collection(COLLECTION_NAME));
     });
 };
